@@ -52,6 +52,32 @@ A powerful Streamlit-based AI scriptwriting assistant designed specifically for 
 
 - `GROQ_API_KEY`: Your Groq API key (required)
 
+### Local Development Setup
+
+1. **Create a `.env` file** in the project root:
+   ```bash
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
+
+2. **Or use Streamlit secrets** (create `.streamlit/secrets.toml`):
+   ```toml
+   GROQ_API_KEY = "your_groq_api_key_here"
+   ```
+
+### Streamlit Cloud Deployment
+
+1. **Deploy to Streamlit Cloud**:
+   - Connect your GitHub repository to Streamlit Cloud
+   - Set the main file path to `script_agent_ui.py`
+
+2. **Add secrets in Streamlit Cloud**:
+   - Go to your app settings in Streamlit Cloud
+   - Navigate to "Secrets" section
+   - Add your GROQ API key:
+     ```toml
+     GROQ_API_KEY = "your_groq_api_key_here"
+     ```
+
 ### Customization
 
 The app uses a custom theme defined in `.streamlit/config.toml`. You can modify colors, fonts, and other settings there.

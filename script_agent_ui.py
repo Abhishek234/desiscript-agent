@@ -3,16 +3,23 @@ import openai
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables for local development
 load_dotenv()
 
 # Configure Groq API
 openai.api_base = "https://api.groq.com/openai/v1"
-openai.api_key = os.getenv("GROQ_API_KEY")
+
+# Get API key from Streamlit secrets (for deployment) or environment variables (for local development)
+if st.secrets.get("GROQ_API_KEY"):
+    openai.api_key = st.secrets["GROQ_API_KEY"]
+else:
+    openai.api_key = os.getenv("GROQ_API_KEY")
 
 # Check if API key is available
 if not openai.api_key:
-    st.error("❌ GROQ_API_KEY not found in environment variables. Please check your .env file.")
+    st.error("❌ GROQ_API_KEY not found. Please check your Streamlit secrets or .env file.")
+    st.info("💡 For local development: Add GROQ_API_KEY to your .env file")
+    st.info("💡 For Streamlit Cloud: Add GROQ_API_KEY to your Streamlit secrets")
     st.stop()
 
 st.set_page_config(page_title="🎬 DesiScript – Scriptwriting Agent", layout="centered")
